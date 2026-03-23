@@ -1,0 +1,50 @@
+{
+  "name": "aws-s3-deployer",
+  "version": "1.0.4",
+  "description": "AWS S3 deploy and CloudFront invalidation with OIDC support",
+  "homepage": "https://github.com/DEN1tw/aws-s3-deployer#readme",
+  "bugs": {
+    "url": "https://github.com/DEN1tw/aws-s3-deployer/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DEN1tw/aws-s3-deployer.git"
+  },
+  "bin": {
+    "aws-s3-deployer": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "bun build src/cli.ts src/index.ts --outdir ./dist --target node --format esm",
+    "prepare": "bun run build && husky",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "check": "bun run lint && bun run format && bun run test:run"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cloudfront": "^3.0.0",
+    "@aws-sdk/client-s3": "^3.0.0",
+    "@aws-sdk/credential-providers": "^3.0.0",
+    "commander": "^14.0.0",
+    "fast-glob": "^3.3.0",
+    "mime-types": "^3.0.0"
+  },
+  "devDependencies": {
+    "@types/mime-types": "^3.0.1",
+    "@types/node": "^25.5.0",
+    "husky": "latest",
+    "oxfmt": "latest",
+    "oxlint": "latest",
+    "vitest": "latest"
+  }
+}
